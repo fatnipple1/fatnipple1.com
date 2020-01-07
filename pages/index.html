@@ -2,12 +2,48 @@
 
 <title>fatnipple1.html</title>
 
-<link rel="stylesheet" href="static/css/fatnipple1.css">
+<style>
+	body {
+		margin-top: 1%;
+	}
+	
+	#title {
+		width: 40%;
+	}
+	
+	#home {
+		padding-top: 10px;
+		image-orientation: from-image;
+		max-height: 500px;
+		max-width: 50%;
+		width: auto;
+	}
+	
+	.middle {
+		position: absolute;
+		text-align: center;
+		margin: auto;
+	}
+	
+	@media screen and (max-width: 1050px) {
+		#title {
+			width: 80%;
+		}
+	
+		#home {
+			max-width: 60%;
+		}
+	
+		body {
+			margin-top: 10%;
+		}
+	}
+</style>
 
 <div class="middle">
-	<img id="title"><br/>
-	<a id="entry" href=""><img id="home"></a>
+	<img id="title" src="{{ title }}"><br/>
+	<a id="entry" href="/fatnipple1.html"><img id="home" src="{{ home }}"></a>
 </div>
 
-<script src="static/js/jquery-3.4.1.min.js"></script>
-<script src="static/js/fatnipple1.js"></script>
+<!-- <script src="static/js/jquery-3.4.1.min.js"></script>
+<script src="static/js/fatnipple1.js"></script> -->
