@@ -1,0 +1,288 @@
+<style>
+    body {
+        margin: 0px;
+    }
+
+    .element {
+        position: fixed;
+    }
+</style>
+
+<title>liftoff.html</title>
+
+<h1 id="loader">Content loading... <span id="percent">0</span>%</h1>
+
+<div hidden id="sky" class="element" style="background: hsl(215, 42%, 53%); z-index: 0"></div>
+<img hidden id="cloud" class="element" src="static/img/flight/cloud.png" style="z-index: 10">
+<img hidden id="goose" class="element" src="static/img/flight/goose.png" style="z-index: 10">
+<img hidden id="chung" class="element" src="static/img/flight/just chung.png" style="z-index: 10">
+<div hidden id="animation" class="element" style="z-index: 2"></div>
+<img hidden id="background-sky" class="element" style="z-index: 1" src="static/img/flight/no chung sky.png">
+
+<img hidden id="left_leg" class="element" src="static/img/flight/components/left_lef.png" style="z-index: 10">
+<img hidden id="right_leg" class="element" src="static/img/flight/components/right_leg.png" style="z-index: 10">
+<img hidden id="left_arm" class="element" src="static/img/flight/components/left_arm.png" style="z-index: 10">
+<img hidden id="right_arm" class="element" src="static/img/flight/components/right_arm.png" style="z-index: 10">
+<img hidden id="head" class="element" src="static/img/flight/components/head.png" style="z-index: 10">
+<img hidden id="torso" class="element" src="static/img/flight/components/torso.png" style="z-index: 10">
+
+<h1 id="hud" class="element" style="z-index: 100; width: 100%">
+    <span id="height">0</span>m, <span id="speed">0</span>m/s
+</h1>
+
+<script>
+    var loader = document.getElementById('loader')
+    var percent = document.getElementById('percent')
+
+    var hud = document.getElementById('hud')
+    var hud_height = document.getElementById('height')
+    var hud_speed = document.getElementById('speed')
+
+    var bparts = [
+        document.getElementById('left_leg'),
+        document.getElementById('right_leg'),
+        document.getElementById('left_arm'),
+        document.getElementById('right_arm'),
+        document.getElementById('head'),
+        document.getElementById('torso')
+    ]
+
+    var bparts_m = [
+        [-1, -2],
+        [1, -2],
+        [-1.5, 0],
+        [1.5, 0]
+        [0, 1.5],
+        [0, 0]
+    ]
+
+    var sky = document.getElementById('sky')
+    var background = document.getElementById('background-sky')
+    var cloud = document.getElementById('cloud')
+    var goose = document.getElementById('goose')
+    var animation = document.getElementById('animation')
+    var chung = document.getElementById('chung')
+    var loaded_count = 0
+    var n_frames = 47
+    var frames = []
+
+    for (var i = 0; i < n_frames; i++) {
+        var frame = new Image()
+        frame.src = `static/img/flight/chung (${i+1}).png`
+        frame.style.width = '100%'
+        frame.style.height = '100%'
+        frame.hidden = true
+        frame.addEventListener('load', () => {
+            loaded_count++
+            var loaded = Math.round(loaded_count / n_frames * 100)
+            percent.innerText = loaded
+            if (loaded_count == n_frames) {
+                loader.hidden = true
+                sky.hidden = false
+                animation.hidden = false
+                setTimeout(doAnim, anim_speed)
+                console.log('Animation initiated')
+            }
+        })
+
+        animation.appendChild(frame)
+        frames.push(frame)
+    }
+
+    var anim_frame = 0
+    var anim_speed = 1000 / 30
+    var game_speed = 1000 / 60
+    var chung_scalar = 1
+    var sky_offset = 0
+    function doAnim() {
+        sizeElements()
+        frames[anim_frame ? anim_frame - 1 : 0].hidden = true
+        frames[anim_frame].hidden = false
+        anim_frame++
+
+        if (anim_frame < 47)
+            setTimeout(doAnim, anim_speed)
+        else init()
+    }
+
+    function getWidth(element) { return parseInt(element.style.width, 10) }
+    function getHeight(element) { return parseInt(element.style.height, 10) }
+
+    function centerElem(element) {
+        element.style.left = (window.innerWidth - getWidth(element)) / 2
+    }
+
+    function sizeElements() {
+        centerElem(sky)
+        centerElem(background)
+        centerElem(animation)
+        centerElem(chung)
+        centerElem(hud)
+
+        if (height < window.innerHeight) sky.style.height = height
+        else sky.style.height = window.innerHeight
+
+        animation.style.height = window.innerHeight
+        animation.style.width = getHeight(animation) * (1088 / 1440)
+
+        chung.style.width = getWidth(animation) * chung_scalar
+        chung.style.height = getHeight(animation) * chung_scalar
+
+        for (var i = 0; i < bparts.length; i++) {
+            bparts[i].style.width = getWidth(chung)
+            bparts[i].style.height = getHeight(chung)
+            bparts[i].style.bottom = 0
+        }
+        
+        background.style.width = getWidth(animation)
+        background.style.height = getWidth(animation) * (1908 / 1088)
+
+        cloud.style.height = window.innerHeight * 0.2
+        cloud.style.width = getHeight(cloud) * (1988 / 1290)
+
+        goose.style.height = window.innerHeight * 0.2
+        goose.style.width = getHeight(goose) * (1988 / 1290)
+
+        background.style.bottom = 0
+        chung.style.bottom = 0
+
+        sky.style.width = getWidth(animation) + sky_offset
+    }
+
+    var keystate = {left: false, right: false, up: false, down: false}
+    function init() {    
+        background.hidden = false
+        animation.hidden = true
+        chung.hidden = false
+        cloud.hidden = false
+        goose.hidden = false
+
+        document.onkeydown = (e) => {
+            switch (e.keyCode) {
+            case 37:
+                keystate.left = true
+                break;
+            case 38:
+                keystate.up = true
+                break;
+            case 39:
+                keystate.right = true
+                break;
+            case 40:
+                keystate.left = true
+                break;
+            }
+        }
+
+        document.onkeyup = (e) => {
+            switch (e.keyCode) {
+            case 37:
+                keystate.left = false
+                break;
+            case 38:
+                keystate.up = false
+                break;
+            case 39:
+                keystate.right = false
+                break;
+            case 40:
+                keystate.left = false
+                break;
+            }
+        }
+
+        window.addEventListener('touchstart', (e) => {
+            var middle = window.innerWidth / 2
+            if (e.changedTouches[0].pageX > middle) keystate.right = true
+            else keystate.left = true
+        })
+
+        window.addEventListener('touchend', (e) => {
+            keystate.left = false
+            keystate.right = false
+        })
+        
+        setInterval(game, game_speed)
+
+        console.log('Game initiated')
+    }
+
+    var height = 0
+    var vert_initial = 15
+    var vert_speed = vert_initial
+    var xposn = 0
+    var chung_speed = 10
+    var cloud_y = 9999
+    var cloud_x = 0
+    var goose_y = 9999
+    var goose_x = 0
+    var goose_dc = 0
+    function game() {
+        sizeElements()
+        height += vert_speed
+        cloud_y += vert_speed * 0.5
+        goose_dc--
+
+        if (goose_dc < 0 || height_m > 1000)
+            goose_y += vert_speed * 0.5
+
+        var height_m = Math.floor(height / 5 / 60)
+        var speed_ms = vert_speed / 5
+
+        hud_height.innerText = height_m
+        hud_speed.innerText = Math.floor(speed_ms)
+
+        var xmin = -(window.innerWidth / 2)
+        var xmax = window.innerWidth / 2
+
+        if (getWidth(chung) / window.innerHeight > 0.23) chung_scalar *= 0.99
+        if (getWidth(sky) < window.innerWidth) sky_offset += 5
+
+        if (cloud_y > window.innerHeight) {
+            cloud.style.zIndex = Math.floor(Math.random() * 2) + 10
+            cloud_y = -getHeight(cloud)
+            cloud_x = Math.floor(Math.random() * window.innerWidth) - (getWidth(cloud) / 2)
+        }
+
+        if (goose_y > window.innerHeight) {
+            goose_dc = (1 * 60) + Math.floor(Math.random() * 60 * 3)
+            goose_y = -getHeight(goose)
+            goose_x = Math.floor(Math.random() * window.innerWidth) - (getWidth(goose) / 2)
+        }
+
+        vert_speed = vert_initial + 100 * (height_m / 1000)
+        chung_speed = 10 + 15 * (height_m / 1000)
+        sky.style.background = `hsl(215, 42%, ${53 * (1 - (height_m / 4000))}%)`
+
+        background.style.bottom = -height
+
+        cloud.style.top = cloud_y
+        cloud.style.left = cloud_x
+
+        goose.style.top = goose_y
+        goose.style.left = goose_x
+
+        var chung_xn = ((window.innerWidth - chung.width) / 2) + xposn
+        chung.style.left = chung_xn
+
+        for (var i = 0; i < bparts.length; i++)
+            bparts[i].style.left = chung_xn
+
+        var chung_left = chung_xn + getWidth(chung) * 0.3
+        var chung_right = chung_xn + getWidth(chung) * 0.7
+        var goose_left = goose_x + getWidth(goose) * 0.1
+        var goose_right = goose_x + getWidth(goose) * 0.9
+
+        var chung_top = window.innerHeight - getHeight(chung) * 0.7
+
+        if (goose_y + getHeight(goose) > chung_top) {
+            if (chung_left > goose_left && chung_right < goose_right) {
+                vert_speed = 0
+                chung_speed = 0
+            }
+        }
+
+        if (keystate.left && xposn > xmin) xposn -= chung_speed
+        if (keystate.right && xposn < xmax) xposn += chung_speed
+    }
+</script>

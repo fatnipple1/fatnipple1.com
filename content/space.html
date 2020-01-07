@@ -1,0 +1,74 @@
+<style>
+    body {
+        margin: 0px;
+    }
+</style>
+
+<!-- <iframe
+    src="https://www.youtube.com/embed/RBtlPT23PTM?autoplay=1"
+    frameborder="0" allow="autoplay; encrypted-media;" hidden>
+</iframe> -->
+
+<canvas id="space"></canvas>
+
+<audio src="static/res/space.mp3" autoplay hidden></audio>
+
+<script>
+    var canvas = document.getElementById('space')
+    var context = canvas.getContext('2d')
+    
+    var chunga = new Image();
+    chunga.src = 'static/img/space_22.png'
+
+    function drawChunga(s) {
+        var x = (canvas.width / 2) - (s * 296)
+        var y = (canvas.height / 2) - (s * 159)
+        context.drawImage(chunga, x, y, chunga.width * s, chunga.height * s)
+    }
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+    });
+
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    var reset = 0.07
+    var rate = 1.01
+
+    var scale1 = 0.01
+    var scale2 = reset
+
+    setInterval(() => {
+
+        drawChunga(scale1)
+        scale1 *= rate
+
+        if (scale1 > 5) {
+            drawChunga(scale2)
+            scale2 *= rate
+        }
+
+        if (scale1 > 250) {
+            scale1 = scale2
+            scale2 = reset
+        }
+
+    }, 1000 / 30)
+</script>
+
+<!-- 
+
+    My Girlfriend will probably never see this, and maybe one day I will forget about this post but
+
+
+    i love her so  incredibly much and i would do anything for her <3 shes just sleeping on the side of my bed while im listening to music on my computer. one day i will marry this girl
+
+
+    I love you abbey,
+    - Joe
+
+    (https://www.youtube.com/watch?v=f9X1C7pTu-M)
+
+ -->

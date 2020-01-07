@@ -1,0 +1,41 @@
+<title>tyla.mp4</title>
+
+<style>
+    body {
+        background-color: black;
+        margin: 0px;
+        text-align: center;
+    }
+
+    video {
+        height: 100%;
+        width: auto;
+    }
+</style>
+
+<video id="playa" src="static/res/tyla.mp4" muted></video>
+
+<script>
+    var playa = document.getElementById('playa')
+    var sounds = []
+    var sound = 0
+
+    for (var i = 0; i < 6; i++)
+        sounds.push(new Audio(`static/res/cave/cave (${i+1}).mp3`))
+
+    function loop() {
+        setTimeout(play, Math.random() * 5000)
+    }
+
+    function play() {
+        playa.play()
+        sounds[sound].play()
+        sounds[sound].onended = () => {
+            playa.pause()
+            sound++
+            loop()
+        }
+    }
+
+    loop()
+</script>

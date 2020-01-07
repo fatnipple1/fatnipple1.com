@@ -1,0 +1,80 @@
+<title>letmego.html</title>
+
+<style>
+    @font-face {
+        font-family: '1820 Modern';
+        src:
+            url('static/font/1820_modern_w00_normal-webfont.woff2') format('woff2'),
+            url('static/font/1820_modern_w00_normal-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        font-family: '1820 Modern';
+        background-image: url('static/img/fatnipple1.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin: 10%;
+    }
+
+    #line {
+        text-align: center;
+        cursor: pointer;
+        background-color: white;
+        padding: 10px;
+
+        /* no select */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media screen and (max-width: 1000px) {
+        #line {
+            margin-top: 20%;
+            font-size: 2.5rem;
+        }
+    }
+</style>
+
+<h1 id="line" onclick="increment()">Hark, Triton, Hark!</h1>
+
+<audio src="static/res/ocean.mp3" hidden autoplay loop></audio>
+<audio id="horn" src="static/res/horn.mp3" hidden></audio>
+
+<script src="static/js/jquery-3.4.1.min.js"></script>
+<script>
+    var index = 0
+    var horns = [4, 8, 13]
+    var lines = [
+        'Hark, Triton, Hark!',
+        'Bellow, and bid our father, the sea king, rise up from the depths,',
+        'fullfoul in his fury, black waves teeming with salt-foam, to smother this young mouth with pungent slime to choke ye,',
+        'engorging yer organs till ye turn blue and bloated with bilge and brine and can scream no more...',
+        'only when, he, crowned in cockle shells with slithering tentacled tail and steaming beard, takes up his fell,',
+        'be-finned arm -- his coral-tined trident screeches banshee-like in the tempest and runs you through the gullet,',
+        'bursting ye, a bulging bladder no more, but a blasted bloody film now',
+        '-- a nothing for the Harpies and the souls of dead sailors to peck and claw and feed upon,',
+        'only to be lapped up and swallowed by the infinite waters of the dread emperor himself,',
+        'forgotten to any man, to any time,',
+        'forgotten to any god or devil,',
+        'forgotten even to the sea...',
+        'for any stuff or part of Winslow, even any scantling of your soul,',
+        'is Winslow no more, but is now itself the sea.'
+    ]
+
+//    setInterval(() => {
+//        increment()
+//    }, 15000)
+
+    function increment() {
+        index ++
+        if (horns.indexOf(index) != -1) $('#horn').trigger('play')
+        $('#line').text(lines[index])
+    }
+</script>
