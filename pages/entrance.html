@@ -7,30 +7,29 @@
 		margin-top: 1%;
 	}
 	
-	#title {
+	.title {
+		text-align: center;
+		margin: auto;
+	}
+
+	.title > img {
 		width: 40%;
 	}
 	
-	#home {
+	.title > a > img {
 		padding-top: 10px;
 		image-orientation: from-image;
 		max-height: 500px;
 		max-width: 50%;
 		width: auto;
 	}
-	
-	.middle {
-		position: absolute;
-		text-align: center;
-		margin: auto;
-	}
-	
+
 	@media screen and (max-width: 1050px) {
-		#title {
+		.title > img {
 			width: 80%;
 		}
 	
-		#home {
+		.title > a > img {
 			max-width: 60%;
 		}
 	
@@ -40,9 +39,9 @@
 	}
 </style>
 
-<div class="middle">
-	<img id="title" src="/img/title/title ({{ title }}).jpg"><br/>
+<div class="title">
+	<img id src="{{ title }}"><br/>
 	<a id="entry" href="/fatnipple1.html">
-		<img id="home" src="/img/home/home ({{ home }}).jpg">
+		<img id="home" src="{{ home }}">
 	</a>
 </div>

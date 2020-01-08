@@ -1,43 +1,64 @@
 <title>fatnipple1.com</title>
 
 <style>
-    .middle {
-		position: absolute;
+    body {
+        /* margin-top: 50px; */
+    }
+
+    .feed {
+        margin: auto;
+        max-width: 810px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .feed > img {
+        object-fit: cover;
+        width: 250px;
+        height: 250px;
+        background-color: red;
+        margin: 10px;
+        line-height: 100px;
+        text-align: center;
+    }
+
+    .title {
 		text-align: center;
 		margin: auto;
-    }
-    
-    body {
-		margin-top: 1%;
 	}
 
-    #title {
+	.title > img {
 		width: 40%;
-    }
+	}
+	
+	.title > a > img {
+		padding-top: 10px;
+		image-orientation: from-image;
+		max-height: 500px;
+		max-width: 50%;
+		width: auto;
+	}
 
-    #feed {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        grid-gap: 10px;
-    }
-
-    .feed-item {
-        background-color: red;
-        width: 100%;
-        height: 50px;
-    }
+    @media screen and (max-width: 1050px) {
+		.title > img {
+			width: 80%;
+		}
+		
+		body {
+			margin-top: 50px;
+		}
+	}
 </style>
 
-<div class="middle">
-    <img id="title" src="/img/title/title ({{ title }}).jpg">
-    
-    <div id="feed">
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-    </div>
+<div class="title">
+	<img id src="{{ title }}"><br/>
+	<a id="entry" href="/fatnipple1.html">
+		<img id="home" src="{{ home }}">
+	</a>
+</div>
+
+<div class="feed">
+    {% for img in images %}
+        <img src="{{ img }}">
+    {% endfor %}
 </div>

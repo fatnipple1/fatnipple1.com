@@ -17,20 +17,16 @@ def image(img):
     if filepath in images: return send_file(filepath)
     else: abort(404)
 
-@app.route('/content/liftoff.html')
-def liftoff():
-    return render_template('content/liftoff.html')
-
 @app.route('/')
 def welcome():
-    title = random.randint(1, 4)
-    home = random.randint(1, 31)
+    title = 'img/title/title (%s).jpg' % random.randint(1, len(os.listdir('img/title/')))
+    home = 'img/home/home (%s).jpg' % random.randint(1, len(os.listdir('img/home/')))
     session['title'] = title
-    session['home'] = home
     return render_template('entrance.html', title=title, home=home)
 
 @app.route('/fatnipple1.html')
 def fatnipple1():
-    return render_template('fatnipple1.html', title=session['title'])
+    all_images = [ 'img/home/' + fn for fn in os.listdir('img/home/') ]
+    return render_template('fatnipple1.html', title=session['title'], images=all_images)
 
 app.run(host='0.0.0.0', port=8000, debug=True)
