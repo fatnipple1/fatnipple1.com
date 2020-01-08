@@ -12,7 +12,7 @@
         object-fit: cover;
         width: 250px;
         height: 250px;
-        background-color: red;
+        background-color: lightgrey;
         margin: 10px;
         line-height: 100px;
         text-align: center;
@@ -33,6 +33,15 @@
 		max-height: 500px;
 		max-width: 50%;
 		width: auto;
+	}
+
+	.footer {
+		text-align: center;
+		margin: 50px;
+	}
+
+	.footer > hr {
+		max-width: 900px;
 	}
 
     @media screen and (max-width: 1050px) {
@@ -58,3 +67,11 @@
         <img src="{{ img }}">
     {% endfor %}
 </div>
+
+
+<footer class="footer">
+	<hr/>
+	<p>fatnipple1.com</p>
+	<p>brought to you, sincerely from the <a href="">Hot Tub Boys</a></p>
+</footer>
+  
