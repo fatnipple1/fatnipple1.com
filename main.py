@@ -23,7 +23,7 @@ def welcome():
 
 @app.route('/fatnipple1.html')
 def fatnipple1():
-    all_images = [ 'static/img/home/' + fn for fn in os.listdir('static/img/home/') ]
+    all_images = [ 'static/img/home/' + fn for fn in os.listdir(path('static/img/home/')) ]
     return render_template('fatnipple1.html', title=session['title'], images=all_images)
 
 if __name__ == '__main__':
