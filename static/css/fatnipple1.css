@@ -1,0 +1,39 @@
+.feed {
+    margin: auto;
+    max-width: 810px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.feed > img {
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    background-color: lightgrey;
+    margin: 10px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    margin: 50px;
+}
+
+.footer > hr {
+    max-width: 900px;
+}
+
+.footer > p {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+@media screen and (max-width: 1050px) {
+    .title > img {
+        width: 80%;
+    }
+    
+    body {
+        margin-top: 50px;
+    }
+}

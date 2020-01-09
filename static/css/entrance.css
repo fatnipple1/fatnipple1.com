@@ -1,0 +1,17 @@
+body {
+    margin-top: 1%;
+}
+
+@media screen and (max-width: 1050px) {
+    .title > img {
+        width: 80%;
+    }
+
+    .title > a > img {
+        max-width: 60%;
+    }
+
+    body {
+        margin-top: 10%;
+    }
+}
