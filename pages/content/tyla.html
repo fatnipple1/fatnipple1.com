@@ -13,7 +13,7 @@
     }
 </style>
 
-<video id="playa" src="static/res/tyla.mp4" muted></video>
+<video id="playa" src="/static/res/tyla.mp4" muted></video>
 
 <script>
     var playa = document.getElementById('playa')
@@ -21,7 +21,7 @@
     var sound = 0
 
     for (var i = 0; i < 6; i++)
-        sounds.push(new Audio(`static/res/cave/cave (${i+1}).mp3`))
+        sounds.push(new Audio(`/static/res/cave/cave (${i+1}).mp3`))
 
     function loop() {
         setTimeout(play, Math.random() * 5000)

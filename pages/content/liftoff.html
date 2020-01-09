@@ -13,18 +13,18 @@
 <h1 id="loader">Content loading... <span id="percent">0</span>%</h1>
 
 <div hidden id="sky" class="element" style="background: hsl(215, 42%, 53%); z-index: 0"></div>
-<img hidden id="cloud" class="element" src="static/img/flight/cloud.png" style="z-index: 10">
-<img hidden id="goose" class="element" src="static/img/flight/goose.png" style="z-index: 10">
-<img hidden id="chung" class="element" src="static/img/flight/just chung.png" style="z-index: 10">
+<img hidden id="cloud" class="element" src="/static/img/flight/cloud.png" style="z-index: 10">
+<img hidden id="goose" class="element" src="/static/img/flight/goose.png" style="z-index: 10">
+<img hidden id="chung" class="element" src="/static/img/flight/just chung.png" style="z-index: 10">
 <div hidden id="animation" class="element" style="z-index: 2"></div>
-<img hidden id="background-sky" class="element" style="z-index: 1" src="static/img/flight/no chung sky.png">
+<img hidden id="background-sky" class="element" style="z-index: 1" src="/static/img/flight/no chung sky.png">
 
-<img hidden id="left_leg" class="element" src="static/img/flight/components/left_lef.png" style="z-index: 10">
-<img hidden id="right_leg" class="element" src="static/img/flight/components/right_leg.png" style="z-index: 10">
-<img hidden id="left_arm" class="element" src="static/img/flight/components/left_arm.png" style="z-index: 10">
-<img hidden id="right_arm" class="element" src="static/img/flight/components/right_arm.png" style="z-index: 10">
-<img hidden id="head" class="element" src="static/img/flight/components/head.png" style="z-index: 10">
-<img hidden id="torso" class="element" src="static/img/flight/components/torso.png" style="z-index: 10">
+<img hidden id="left_leg" class="element" src="/static/img/flight/components/left_lef.png" style="z-index: 10">
+<img hidden id="right_leg" class="element" src="/static/img/flight/components/right_leg.png" style="z-index: 10">
+<img hidden id="left_arm" class="element" src="/static/img/flight/components/left_arm.png" style="z-index: 10">
+<img hidden id="right_arm" class="element" src="/static/img/flight/components/right_arm.png" style="z-index: 10">
+<img hidden id="head" class="element" src="/static/img/flight/components/head.png" style="z-index: 10">
+<img hidden id="torso" class="element" src="/static/img/flight/components/torso.png" style="z-index: 10">
 
 <h1 id="hud" class="element" style="z-index: 100; width: 100%">
     <span id="height">0</span>m, <span id="speed">0</span>m/s
@@ -68,7 +68,7 @@
 
     for (var i = 0; i < n_frames; i++) {
         var frame = new Image()
-        frame.src = `static/img/flight/chung (${i+1}).png`
+        frame.src = `/static/img/flight/chung (${i+1}).png`
         frame.style.width = '100%'
         frame.style.height = '100%'
         frame.hidden = true

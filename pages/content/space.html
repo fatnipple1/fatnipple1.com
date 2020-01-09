@@ -4,21 +4,16 @@
     }
 </style>
 
-<!-- <iframe
-    src="https://www.youtube.com/embed/RBtlPT23PTM?autoplay=1"
-    frameborder="0" allow="autoplay; encrypted-media;" hidden>
-</iframe> -->
-
 <canvas id="space"></canvas>
 
-<audio src="static/res/space.mp3" autoplay hidden></audio>
+<audio src="/static/res/space.mp3" autoplay hidden></audio>
 
 <script>
     var canvas = document.getElementById('space')
     var context = canvas.getContext('2d')
     
     var chunga = new Image();
-    chunga.src = 'static/img/space_22.png'
+    chunga.src = '/static/img/space.png'
 
     function drawChunga(s) {
         var x = (canvas.width / 2) - (s * 296)

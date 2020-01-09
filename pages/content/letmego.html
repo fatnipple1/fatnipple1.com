@@ -4,15 +4,15 @@
     @font-face {
         font-family: '1820 Modern';
         src:
-            url('static/font/1820_modern_w00_normal-webfont.woff2') format('woff2'),
-            url('static/font/1820_modern_w00_normal-webfont.woff') format('woff');
+            url('/static/font/1820_modern_w00_normal-webfont.woff2') format('woff2'),
+            url('/static/font/1820_modern_w00_normal-webfont.woff') format('woff');
         font-weight: normal;
         font-style: normal;
     }
 
     body {
         font-family: '1820 Modern';
-        background-image: url('static/img/fatnipple1.jpg');
+        background-image: url('/static/img/fatnipple1.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -44,10 +44,10 @@
 
 <h1 id="line" onclick="increment()">Hark, Triton, Hark!</h1>
 
-<audio src="static/res/ocean.mp3" hidden autoplay loop></audio>
-<audio id="horn" src="static/res/horn.mp3" hidden></audio>
+<audio src="/static/res/ocean.mp3" hidden autoplay loop></audio>
+<audio id="horn" src="/static/res/horn.mp3" hidden></audio>
 
-<script src="static/js/jquery-3.4.1.min.js"></script>
+<script src="/static/js/jquery-3.4.1.min.js"></script>
 <script>
     var index = 0
     var horns = [4, 8, 13]

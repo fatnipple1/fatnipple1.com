@@ -2,6 +2,7 @@ from flask import Flask, render_template, send_file, abort, session
 import random
 import os
 import time
+import re
 
 here = os.path.dirname(__file__)
 def path(rel):
@@ -25,6 +26,11 @@ def welcome():
 def fatnipple1():
     all_images = [ 'static/img/home/' + fn for fn in os.listdir(path('static/img/home/')) ]
     return render_template('fatnipple1.html', title=session['title'], images=all_images)
+
+@app.route('/content/<page>')
+def content(page):
+    safe_page = re.sub(r'\W+', '', page)
+    return render_template('content/%s.html' % safe_page)
 
 if __name__ == '__main__':
     app.secret_key = 'totally secret secret key'
