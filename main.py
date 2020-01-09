@@ -15,7 +15,7 @@ for root, dirs, files in os.walk('img/'):
 @app.before_request
 def before_request():
     if 'title' not in session or session['expires'] < time.time():
-        title = 'img/title/title (%s).jpg' % random.randint(1, len(os.listdir('img/title/')))
+        title = 'img/title/' + random.choice(os.listdir('img/title/'))
         session['title'] = title
         session['expires'] = time.time() + 600 # ten minutes
 
@@ -27,7 +27,7 @@ def image(img):
 
 @app.route('/')
 def welcome():
-    home = 'img/home/home (%s).jpg' % random.randint(1, len(os.listdir('img/home/')))
+    home = 'img/home/' + random.choice(os.listdir('img/home/'))
     return render_template('entrance.html', title=session['title'], home=home)
 
 @app.route('/fatnipple1.html')

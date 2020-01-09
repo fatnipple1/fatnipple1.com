@@ -5,3 +5,6 @@ __pycache__/
 *$py.class
 secrets.json
 *.db
+
+imgs/
+out/
