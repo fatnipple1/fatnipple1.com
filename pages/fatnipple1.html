@@ -12,7 +12,9 @@
 
 <div class="feed">
     {% for img in images %}
-        <img src="{{ img }}">
+        <a href="{{ img['url'] }}">
+            <img src="{{ img['src'] }}">
+        </a>
     {% endfor %}
 </div>
 

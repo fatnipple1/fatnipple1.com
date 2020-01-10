@@ -5,7 +5,7 @@
     flex-wrap: wrap;
 }
 
-.feed > img {
+.feed > a > img {
     object-fit: cover;
     width: 250px;
     height: 250px;

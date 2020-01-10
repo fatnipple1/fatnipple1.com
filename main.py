@@ -5,10 +5,20 @@ import time
 import re
 
 here = os.path.dirname(__file__)
-def path(rel):
-    return os.path.join(here, rel)
+def path(rel): return os.path.join(here, rel)
+
+print(os.listdir(path('static/img/home/')))
 
 app = Flask(__name__, template_folder=path('pages/'))
+content_urls = {
+    'bald.jpg': '/content/liftoff',
+    'IMG_20191019_004248.jpg': '/content/chavs',
+    'movie.jpg': '/content/letmego',
+    '20200102_223247.jpg': '/content/rage',
+    'Asset0019.jpg': '/content/romil',
+    '20190614_235009.jpg': '/content/space',
+    'IMG_1695.jpg': '/content/tyla'
+}
 
 @app.before_request
 def before_request():
@@ -24,7 +34,11 @@ def welcome():
 
 @app.route('/fatnipple1.html')
 def fatnipple1():
-    all_images = [ 'static/img/home/' + fn for fn in os.listdir(path('static/img/home/')) ]
+    files = os.listdir(path('static/img/home/'))
+    all_images = [ {
+        'src': '/static/img/home/' + fn,
+        'url': content_urls[fn] if fn in content_urls else '#'
+    } for fn in files ]
     return render_template('fatnipple1.html', title=session['title'], images=all_images)
 
 @app.route('/content/<page>')
