@@ -17,7 +17,8 @@ content_urls = {
     '20200102_223247.jpg': '/content/rage',
     'Asset0019.jpg': '/content/romil',
     '20190614_235009.jpg': '/content/space',
-    'IMG_1695.jpg': '/content/tyla'
+    'IMG_1695.jpg': '/content/tyla',
+    'drnk.jpg': '/content/fountain'
 }
 
 @app.before_request
