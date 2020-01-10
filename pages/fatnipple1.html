@@ -12,9 +12,11 @@
 
 <div class="feed">
     {% for img in images %}
-        <a href="{{ img['url'] }}">
+        {% if img['has_url'] %}
+            <a href="{{ img['url'] }}"><img src="{{ img['src'] }}"></a>
+        {% else %}
             <img src="{{ img['src'] }}">
-        </a>
+        {% endif %}
     {% endfor %}
 </div>
 

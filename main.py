@@ -38,6 +38,7 @@ def fatnipple1():
     files = os.listdir(path('static/img/home/'))
     all_images = [ {
         'src': '/static/img/home/' + fn,
+        'has_url': fn in content_urls,
         'url': content_urls[fn] if fn in content_urls else '#'
     } for fn in files ]
     return render_template('fatnipple1.html', title=session['title'], images=all_images)
