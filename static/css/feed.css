@@ -14,13 +14,3 @@
     line-height: 100px;
     text-align: center;
 }
-
-@media screen and (max-width: 1050px) {
-    .title > img {
-        width: 80%;
-    }
-    
-    body {
-        margin-top: 50px;
-    }
-}
