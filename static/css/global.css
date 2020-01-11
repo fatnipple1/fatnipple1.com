@@ -1,0 +1,43 @@
+.title {
+    text-align: center;
+    margin: auto;
+}
+
+.title > img {
+    width: 40%;
+}
+
+.title > a > img {
+    padding-top: 10px;
+    image-orientation: from-image;
+    max-height: 500px;
+    max-width: 50%;
+    width: auto;
+}
+
+.header {
+    text-align: center;
+}
+
+.header > ul > li {
+    padding-left: 100px;
+    padding-right: 100px;
+    display: inline;
+}
+
+.header > hr {
+    max-width: 900px;
+}
+
+.footer {
+    text-align: center;
+    margin: 50px;
+}
+
+.footer > hr {
+    max-width: 900px;
+}
+
+.footer > p {
+    font-family: 'Times New Roman', Times, serif;
+}

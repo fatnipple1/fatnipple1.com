@@ -33,15 +33,23 @@ def welcome():
     home = 'static/img/home/' + random.choice(os.listdir(path('static/img/home/')))
     return render_template('entrance.html', title=session['title'], home=home)
 
-@app.route('/fatnipple1.html')
-def fatnipple1():
+@app.route('/feed')
+def feed():
     files = os.listdir(path('static/img/home/'))
     all_images = [ {
         'src': '/static/img/home/' + fn,
         'has_url': fn in content_urls,
         'url': content_urls[fn] if fn in content_urls else '#'
     } for fn in files ]
-    return render_template('fatnipple1.html', title=session['title'], images=all_images)
+    return render_template('feed.html', title=session['title'], images=all_images)
+
+@app.route('/live')
+def live():
+    return render_template('live.html', title=session['title'])
+
+@app.route('/about')
+def about():
+    return render_template('about.html', title=session['title'])
 
 @app.route('/content/<page>')
 def content(page):

@@ -15,19 +15,6 @@
     text-align: center;
 }
 
-.footer {
-    text-align: center;
-    margin: 50px;
-}
-
-.footer > hr {
-    max-width: 900px;
-}
-
-.footer > p {
-    font-family: 'Times New Roman', Times, serif;
-}
-
 @media screen and (max-width: 1050px) {
     .title > img {
         width: 80%;
