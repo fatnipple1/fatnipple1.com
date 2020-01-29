@@ -28,6 +28,10 @@ def before_request():
         session['title'] = title
         session['expires'] = time.time() + 600 # ten minutes
 
+@app.route('/htb')
+def linkinbio():
+    return render_template('linkinbio.html')
+
 @app.route('/')
 def welcome():
     home = 'static/img/home/' + random.choice(os.listdir(path('static/img/home/')))
